@@ -1,0 +1,177 @@
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+//import { Link } from 'react-scroll';
+import Link from "next/link"
+
+const Hero = () => {
+    return (
+        <div className="flex justify-center items-center h-9/10">
+            <div className="text-center p-5">
+                <h1 className="text-8xl font-bold mb-6">thithu siva</h1>
+                <div className="max-w-xl mx-auto">
+                    <h3 className="text-lg mb-6">Mit Leidenschaft am Code - Für mich ist Programmieren mehr als nur Arbeit; es ist die Freude, Ideen zum Leben zu erwecken und kreative Lösungen für komplexe Probleme zu finden.</h3>
+                </div>
+                <Button>
+                    <Link 
+                        activeClass="active"
+                        to="contact"
+                        spy={true}
+                        smooth={true}
+                        duration={500}>
+                        Sag Hallo
+                    </Link>
+                </Button>
+            </div>
+        </div>
+    );
+}
+
+export default Hero;
+
+
+'use client'
+
+import * as React from "react"
+//import { Link } from 'react-scroll';
+import Link from "next/link"
+import { cn } from "@/lib/utils"
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuIndicator,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    NavigationMenuViewport,
+    navigationMenuTriggerStyle,
+  } from "@/components/ui/navigation-menu"
+
+  const Navigation = () => {
+    return (
+        <div>
+            <NavigationMenu className="flex list-none">
+                    <NavigationMenuItem className="cursor-pointer">
+                        <Link
+                            activeClass="active"
+                            to="projects"
+                            spy={true}
+                            smooth={true}
+                            duration={500}
+                            className={navigationMenuTriggerStyle()}
+                        >
+                            Projekte
+                        </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem className="cursor-pointer">
+                        <Link
+                            activeClass="active"
+                            to="skills"
+                            spy={true}
+                            smooth={true}
+                            duration={500}
+                            className={navigationMenuTriggerStyle()}
+                        >
+                            Skills
+                        </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem className="cursor-pointer">
+                        <Link
+                            activeClass="active"
+                            to="about"
+                            spy={true}
+                            smooth={true}
+                            duration={500}
+                            className={navigationMenuTriggerStyle()}
+                        >
+                            Über mich
+                        </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem className="cursor-pointer">
+                        <Link
+                            activeClass="active"
+                            to="contact"
+                            spy={true}
+                            smooth={true}
+                            duration={500}
+                            className={navigationMenuTriggerStyle()}
+                        >
+                            Kontakt
+                        </Link>
+                    </NavigationMenuItem>
+            </NavigationMenu>
+        </div>
+    );
+}
+
+
+export default Navigation;
+----------------------------------
+
+'use client'
+
+import * as React from "react"
+//import { Link } from 'react-scroll';
+import Link from "next/link";
+import { cn } from "@/lib/utils"
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuIndicator,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    NavigationMenuViewport,
+    navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+  } from "@/components/ui/sheet";
+
+import { AlignJustify } from "lucide-react";
+
+const Navigation = () => {
+    return (
+        <div>
+            <NavigationMenu className="flex list-none">
+                <NavigationMenuItem className="mr-4">
+                    <Link href="#projects" legacyBehavior passHref>
+                        <NavigationMenuLink>
+                            Projekte
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="mr-4">
+                    <Link href="#skills" legacyBehavior passHref>
+                        <NavigationMenuLink>
+                            Skills
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="mr-4">
+                    <Link href="#about" legacyBehavior passHref>
+                        <NavigationMenuLink>
+                            Über Mich
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem> {/* No margin for the last item */}
+                    <Link href="#contact" legacyBehavior passHref>
+                        <NavigationMenuLink>
+                            Kontakt
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+            </NavigationMenu>
+        </div>
+    );
+}
+
+export default Navigation;

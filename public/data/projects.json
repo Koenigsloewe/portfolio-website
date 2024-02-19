@@ -1,0 +1,25 @@
+{
+    "projects": [
+        {
+            "id": 1,
+            "projectName": "Audioprep",
+            "projectDescription": "Audioprep ist ein Tool, das eine Audiodatei für das Voice-Modell-Training KI RVC aufbereited und segmentiert um besser trainieren zu können. Das Tool ist in Python umgesetzt",
+            "projectImage": "/images/audioprep.png",
+            "projectLink": "https://github.com/Koenigsloewe/Audioprep"
+        },
+        {
+            "id": 2,
+            "projectName": "AlpineAura E-Commerce",
+            "projectDescription": "AlpineAura ist ein E-Commerce-Shop für Outdoor-Produkte. Der Shop ist in Python mit Django und SQLite umgesetzt und nutzt die Stripe-API und Paypal für die Zahlungsabwicklung.",
+            "projectImage": "/images/alpineaura.png",
+            "projectLink": ""
+        },
+        {
+            "id": 3,
+            "projectName": "Pomodorodex",
+            "projectDescription": "Pomodorodex ist ein Pomodoro-Timer, der die Arbeitszeit in 25-Minuten-Intervalle gliedert und die Pausenzeiten dazwischen regelt. Zusätzlich bietet es eine To-Do-Liste und Möglichkeiten zur Personalisierung. Das Tool ist in Python programmiert.",
+            "projectImage": "/images/pomodorodex.png",
+            "projectLink": "https://github.com/Koenigsloewe/Pomodorodex"
+        }
+    ]
+}
