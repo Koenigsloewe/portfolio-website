@@ -43,30 +43,40 @@ const Contact = () => {
         },
     });
 
-    const handleSubmit = () => {
-        console.log();
+    const handleSubmit = (data : any) => console.log(data);
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                delayChildren: 0.5, 
+                staggerChildren: 0.2,
+            },
+        },
     };
 
-const h1Variants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            type: "easeInOut",
-            duration: 1.0,
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.5 },
         },
-    },
-};
+    };
 
     return (
-        <div className="flex flex-col justify-center items-center p-8 text-left min-h-screen">
-            <h2 className="text-4xl font-bold mb-8 underline">Kontakt</h2>
-            <p className="max-w-2xl mb-8 text-center">
-                Haben Sie Fragen, Ideen oder möchten Sie einfach nur Hallo sagen? Ich
-                freue mich darauf, von Ihnen zu hören!
-            </p>
-            <div className="flex flex-col md:flex-row justify-evenly w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <motion.div
+            className="flex flex-col justify-center items-center p-8 text-left min-h-screen"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
+            <motion.h2 className="text-4xl font-bold mb-8 underline" variants={itemVariants}>Kontakt</motion.h2>
+            <motion.p className="max-w-2xl mb-8 text-center" variants={itemVariants}>
+                Haben Sie Fragen, Ideen oder möchten Sie einfach nur Hallo sagen? Ich freue mich darauf, von Ihnen zu hören!
+            </motion.p>
+            <motion.div className="flex flex-col md:flex-row justify-evenly w-full md:w-1/2 px-3 mb-6 md:mb-0" variants={itemVariants}>
                 <Link href="mailto:ThithuSiva@protonmail.com">
                     <div className="flex items-center justify-center mb-4 md:mb-0 md:mr-4">
                         <Button variant="ghost" className="flex items-center">
@@ -81,12 +91,13 @@ const h1Variants = {
                         </Button>
                     </div>
                 </Link>
-            </div>
+            </motion.div>
 
             <Form {...form}>
-                <form
+                <motion.form
+                    variants={itemVariants}
                     onSubmit={form.handleSubmit(handleSubmit)}
-                    className="w-full max-w-4xl"
+                    className="w-full max-w-4xl pt-4"
                 >
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-left">
@@ -146,9 +157,9 @@ const h1Variants = {
                     <div className="text-center">
                         <Button type="submit">Absenden</Button>
                     </div>
-                </form>
+                </motion.form>
             </Form>
-        </div>
+        </motion.div>
     );
 };
 
