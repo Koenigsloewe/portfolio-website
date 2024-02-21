@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from "react"
-//import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import Link from "next/link";
 import { cn } from "@/lib/utils"
 import {
@@ -32,37 +32,37 @@ const Navigation = () => {
         <div>
             <div className="hidden md:flex">
                 <NavigationMenu className="flex list-none">
-                    <NavigationMenuItem className="mr-4">
-                        <Link href="#projects" legacyBehavior passHref>
+                    <NavigationMenuItem className="mr-4 cursor-pointer hover:underline">
+                        <ScrollLink to="projects" smooth={true} duration={500} offset={-70} >
                             <NavigationMenuLink>
                                 Projekte
                             </NavigationMenuLink>
-                        </Link>
+                        </ScrollLink>
                     </NavigationMenuItem>
-                    <NavigationMenuItem className="mr-4">
-                        <Link href="#skills" legacyBehavior passHref>
+                    <NavigationMenuItem className="mr-4 cursor-pointer hover:underline">
+                        <ScrollLink to="skills" smooth={true} duration={500} offset={-70}>
                             <NavigationMenuLink>
                                 Skills
                             </NavigationMenuLink>
-                        </Link>
+                        </ScrollLink>
                     </NavigationMenuItem>
-                    <NavigationMenuItem className="mr-4">
-                        <Link href="#about" legacyBehavior passHref>
+                    <NavigationMenuItem className="mr-4 cursor-pointer hover:underline">
+                        <ScrollLink to="about" smooth={true} duration={500} offset={-0}>
                             <NavigationMenuLink>
                                 Über Mich
                             </NavigationMenuLink>
-                        </Link>
+                        </ScrollLink>
                     </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <Link href="#contact" legacyBehavior passHref>
+                    <NavigationMenuItem className="mr-4 cursor-pointer hover:underline">
+                        <ScrollLink to="contact" smooth={true} duration={500} offset={-40}>
                             <NavigationMenuLink>
                                 Kontakt
                             </NavigationMenuLink>
-                        </Link>
+                        </ScrollLink>
                     </NavigationMenuItem>
                 </NavigationMenu>
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center justify-center">
                 <Sheet>
                     <SheetTrigger>
                         <AlignJustify />
@@ -71,19 +71,18 @@ const Navigation = () => {
                         <SheetHeader>
                             <SheetTitle>
                                 <div className="flex flex-col space-y-4 items-start w-full text-lg">
-                                    <Link href="#projects" legacyBehavior passHref>
+                                    <ScrollLink to="projects" smooth={true} duration={500} offset={-70} className="mr-4 cursor-pointer hover:underline">
                                         Projekte
-                                    </Link>
-                                    <Link href="#skills" legacyBehavior passHref>
-
+                                    </ScrollLink>
+                                    <ScrollLink to="skills" smooth={true} duration={500} offset={-70} className="mr-4 cursor-pointer hover:underline">
                                         Skills
-                                    </Link>
-                                    <Link href="#about" legacyBehavior passHref>
+                                    </ScrollLink>
+                                    <ScrollLink to="about" smooth={true} duration={500} offset={-70} className="mr-4 cursor-pointer hover:underline">
                                         Über Mich
-                                    </Link>
-                                    <Link href="#contact" legacyBehavior passHref>
+                                    </ScrollLink>
+                                    <ScrollLink to="contact" smooth={true} duration={500} offset={-50} className="mr-4 cursor-pointer hover:underline">
                                         Kontakt
-                                    </Link>
+                                    </ScrollLink>
                                 </div>
                             </SheetTitle>
                         </SheetHeader>

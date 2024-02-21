@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -44,6 +45,11 @@ const Projects = () => {
         }
     ];
 
+    const [ref, inView] = useInView({
+        threshold: 0.2,
+        triggerOnce: true,
+    });
+
     const h2Variants = {
         hidden: { y: 50, opacity: 0 },
         visible: {
@@ -67,7 +73,7 @@ const Projects = () => {
 
     const itemVariants = {
         hidden: { x: -50, opacity: 0 },
-        visible: (i : number) => ({
+        visible: (i: number) => ({
             x: 0,
             opacity: 1,
             transition: {
@@ -79,23 +85,23 @@ const Projects = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center p-8 text-center">
+        <div ref={ref} className="flex flex-col justify-center items-center p-8 text-center">
             <motion.h2
                 variants={h2Variants}
                 initial="hidden"
-                animate="visible"
+                animate={inView ? "visible" : "hidden"}
                 className="text-4xl font-bold mb-8 underline">
                 Meine Projekte
             </motion.h2>
             <motion.div
-                className="max-w-6xl mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
                 variants={containerVariants}
                 initial="hidden"
-                animate="visible">
+                animate={inView ? "visible" : "hidden"}
+                className="max-w-6xl mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
-                        custom={index} // Custom prop for dynamic delay
+                        custom={index}
                         variants={itemVariants}>
                         <Card className="flex flex-col h-full">
                             <CardContent>

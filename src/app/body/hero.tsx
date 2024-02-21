@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-//import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import Link from "next/link"
 import { motion } from 'framer-motion';
 
@@ -70,9 +70,9 @@ const Hero = () => {
                     animate="visible"
                 >
                     <Button>
-                        <Link href="#contact">
+                        <ScrollLink to="contact" smooth={true} duration={500}>
                             Sag Hallo
-                        </Link>
+                        </ScrollLink>
                     </Button>
                 </motion.div>
             </div>

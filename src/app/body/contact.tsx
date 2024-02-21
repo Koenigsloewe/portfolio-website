@@ -3,6 +3,7 @@
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useInView } from 'react-intersection-observer';
 
 import { Github } from 'lucide-react';
 import { Mail } from 'lucide-react';
@@ -34,6 +35,11 @@ const formSchema = zod.object({
 });
 
 const Contact = () => {
+    const [ref, inView] = useInView({
+        threshold: 0.2, 
+        triggerOnce: true, 
+    });
+
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -66,17 +72,17 @@ const Contact = () => {
     };
 
     return (
-        <motion.div
+        <motion.div ref={ref}
             className="flex flex-col justify-center items-center p-8 text-left min-h-screen"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            animate={inView ? "visible" : "hidden"}
         >
-            <motion.h2 className="text-4xl font-bold mb-8 underline" variants={itemVariants}>Kontakt</motion.h2>
-            <motion.p className="max-w-2xl mb-8 text-center" variants={itemVariants}>
+            <motion.h2 className="text-4xl font-bold mb-8 underline" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>Kontakt</motion.h2>
+            <motion.p className="max-w-2xl mb-8 text-center" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
                 Haben Sie Fragen, Ideen oder möchten Sie einfach nur Hallo sagen? Ich freue mich darauf, von Ihnen zu hören!
             </motion.p>
-            <motion.div className="flex flex-col md:flex-row justify-evenly w-full md:w-1/2 px-3 mb-6 md:mb-0" variants={itemVariants}>
+            <motion.div className="flex flex-col md:flex-row justify-evenly w-full md:w-1/2 px-3 mb-6 md:mb-0" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
                 <Link href="mailto:ThithuSiva@protonmail.com">
                     <div className="flex items-center justify-center mb-4 md:mb-0 md:mr-4">
                         <Button variant="ghost" className="flex items-center">
@@ -98,6 +104,8 @@ const Contact = () => {
                     variants={itemVariants}
                     onSubmit={form.handleSubmit(handleSubmit)}
                     className="w-full max-w-4xl pt-4"
+                    animate={inView ? "visible" : "hidden"}
+                    initial="hidden"
                 >
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-left">
