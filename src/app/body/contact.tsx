@@ -118,7 +118,7 @@ const Contact = () => {
             animate={inView ? "visible" : "hidden"}
             onSubmit={form.handleSubmit(onSubmit)}
         >
-            <motion.h2 className="text-4xl font-bold mb-8" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>Kontakt</motion.h2>
+            <motion.h2 className="text-4xl font-bold mb-8 underline" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>Kontakt</motion.h2>
             <motion.p className="max-w-2xl mb-8 text-center" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
                 Haben Sie Fragen, Ideen oder möchten Sie einfach nur Hallo sagen? <br />Ich freue mich darauf, von Ihnen zu hören!
             </motion.p>
