@@ -12,9 +12,6 @@ const Body = () => {
             <div id="skills"><Skills /></div>
             <div id="about"><About /></div>
             <div id="contact"><Contact /></div>
-            <footer className="flex justify-center items-center text-center border-t h-1/10">
-                <p>© 2024 Thithu Siva</p>
-            </footer>
         </div>
     );
 }

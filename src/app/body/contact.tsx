@@ -4,9 +4,11 @@ import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useInView } from 'react-intersection-observer';
+import React, { useState } from 'react';
 
 import { Github } from 'lucide-react';
 import { Mail } from 'lucide-react';
+import { RotateCw } from 'lucide-react';
 
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +16,7 @@ import Link from "next/link";
 import { motion } from 'framer-motion';
 
 import { Button } from "@/components/ui/button";
+import { useToast, toast } from "@/components/ui/use-toast"
 import {
     Form,
     FormControl,
@@ -26,18 +29,24 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
+import { sendEmail } from "/actions/sendEmail";
+
 const formSchema = zod.object({
     name: zod.string().nonempty("Name muss angegeben werden"),
     email: zod.string().email("Ungültige E-Mail-Adresse"),
     message: zod
         .string()
-        .min(10, "Nachricht muss mindestens 10 Zeichen lang sein"),
+        .min(10, "Nachricht muss mindestens 10 Zeichen lang sein")
+        .max(5000, "Nachricht darf maximal 5000 Zeichen lang sein"),
 });
 
 const Contact = () => {
+    const [loading, setLoading] = useState(false);
+    const { toast } = useToast();
+
     const [ref, inView] = useInView({
-        threshold: 0.2, 
-        triggerOnce: true, 
+        threshold: 0.2,
+        triggerOnce: true,
     });
 
     const form = useForm({
@@ -49,14 +58,12 @@ const Contact = () => {
         },
     });
 
-    const handleSubmit = (data : any) => console.log(data);
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                delayChildren: 0.5, 
+                delayChildren: 0.5,
                 staggerChildren: 0.2,
             },
         },
@@ -71,12 +78,33 @@ const Contact = () => {
         },
     };
 
+    const onSubmit = async (formData: FormData) => {
+        setLoading(true);
+        const response = await sendEmail(formData);
+        console.log(response);
+        if (response.data.error) {
+            toast({
+                variant: "destructive",
+                description: "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+            })
+        }
+        if (response.data.data) {
+            toast({
+                description: "Ihre Nachricht wurde erfolgreich gesendet.",
+            })
+            form.reset(); 
+        } 
+        
+        setLoading(false);
+    }
+
     return (
         <motion.div ref={ref}
             className="flex flex-col justify-center items-center p-8 text-left min-h-screen"
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
+            onSubmit={form.handleSubmit(onSubmit)}
         >
             <motion.h2 className="text-4xl font-bold mb-8 underline" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>Kontakt</motion.h2>
             <motion.p className="max-w-2xl mb-8 text-center" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
@@ -102,7 +130,6 @@ const Contact = () => {
             <Form {...form}>
                 <motion.form
                     variants={itemVariants}
-                    onSubmit={form.handleSubmit(handleSubmit)}
                     className="w-full max-w-4xl pt-4"
                     animate={inView ? "visible" : "hidden"}
                     initial="hidden"
@@ -163,11 +190,21 @@ const Contact = () => {
                         />
                     </div>
                     <div className="text-center">
-                        <Button type="submit">Absenden</Button>
+                        <Button type="submit" disabled={loading}>
+                            {loading ? (
+                                <>
+                                    <RotateCw className="mr-2 h-4 w-4 animate-spin" />
+                                    Bitte warten
+                                </>
+                            ) : (
+                                "Absenden"
+                            )}
+                        </Button>
                     </div>
                 </motion.form>
             </Form>
         </motion.div>
+        
     );
 };
 

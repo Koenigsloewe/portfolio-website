@@ -45,6 +45,8 @@ const Projects = () => {
         }
     ];
 
+    const reversedProjects = [...projects].reverse();
+
     const [ref, inView] = useInView({
         threshold: 0.2,
         triggerOnce: true,
@@ -98,7 +100,7 @@ const Projects = () => {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 className="max-w-6xl mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {projects.map((project, index) => (
+                {reversedProjects.map((project, index) => (
                     <motion.div
                         key={index}
                         custom={index}

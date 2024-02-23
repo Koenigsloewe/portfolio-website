@@ -8,12 +8,13 @@ import {
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
-import { SiPython, SiJavascript, SiReact, SiCplusplus, SiSqlite, SiDjango, SiQt, SiGit, SiGithub, SiLinux } from "react-icons/si";
+import { SiPython, SiJavascript, SiReact, SiCplusplus, SiSqlite, SiDjango, SiQt, SiGit, SiGithub, SiLinux, SiTypescript } from "react-icons/si";
 import { DiNodejs } from "react-icons/di";
 
 const skills = [
     { name: 'Python', icon: <SiPython className="text-4xl" /> },
     { name: 'JavaScript', icon: <SiJavascript className="text-4xl" /> },
+    { name: 'TypeScript', icon: <SiTypescript  className="text-4xl" /> },
     { name: 'C++', icon: <SiCplusplus className="text-4xl" /> },
     { name: 'SQL', icon: <SiSqlite className="text-4xl" /> },
     { name: 'Django', icon: <SiDjango className="text-4xl" /> },
