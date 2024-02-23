@@ -105,7 +105,7 @@ const Projects = () => {
                         key={index}
                         custom={index}
                         variants={itemVariants}>
-                        <Card className="flex flex-col h-full">
+                        <Card className="flex flex-col h-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
                             <CardContent>
                                 <CardHeader className='items-center'>
                                     <Image src={project.projectImage} alt={project.projectName} width={500} height={500} layout='responsive' />

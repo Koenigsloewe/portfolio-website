@@ -118,9 +118,9 @@ const Contact = () => {
             animate={inView ? "visible" : "hidden"}
             onSubmit={form.handleSubmit(onSubmit)}
         >
-            <motion.h2 className="text-4xl font-bold mb-8 underline" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>Kontakt</motion.h2>
+            <motion.h2 className="text-4xl font-bold mb-8" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>Kontakt</motion.h2>
             <motion.p className="max-w-2xl mb-8 text-center" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
-                Haben Sie Fragen, Ideen oder möchten Sie einfach nur Hallo sagen? Ich freue mich darauf, von Ihnen zu hören!
+                Haben Sie Fragen, Ideen oder möchten Sie einfach nur Hallo sagen? <br />Ich freue mich darauf, von Ihnen zu hören!
             </motion.p>
             <motion.div className="flex flex-col md:flex-row justify-evenly w-full md:w-1/2 px-3 mb-6 md:mb-0" variants={itemVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
                 <Link href="mailto:ThithuSiva@protonmail.com">
