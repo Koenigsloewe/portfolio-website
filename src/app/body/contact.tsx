@@ -29,7 +29,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-import { sendEmail } from "/actions/sendEmail";
+import { sendEmail } from "@/../actions/sendEmail";
 
 const formSchema = zod.object({
     name: zod.string().nonempty("Name muss angegeben werden"),
@@ -78,23 +78,35 @@ const Contact = () => {
         },
     };
 
-    const onSubmit = async (formData: FormData) => {
+    interface ContactFormData {
+        name: string;
+        email: string;
+        message: string;
+      }
+
+    const onSubmit = async (data: ContactFormData) => {
         setLoading(true);
-        const response = await sendEmail(formData);
-        console.log(response);
-        if (response.data.error) {
+        try {
+            const response = await sendEmail(data);
+
+            if (response.data?.error) {
+                toast({
+                    variant: "destructive",
+                    description: "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+                })
+            }
+            if (response.data?.data) {
+                toast({
+                    description: "Ihre Nachricht wurde erfolgreich gesendet.",
+                })
+                form.reset(); 
+            } 
+        } catch (error) {
             toast({
                 variant: "destructive",
-                description: "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
-            })
+                description: "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+            });
         }
-        if (response.data.data) {
-            toast({
-                description: "Ihre Nachricht wurde erfolgreich gesendet.",
-            })
-            form.reset(); 
-        } 
-        
         setLoading(false);
     }
 

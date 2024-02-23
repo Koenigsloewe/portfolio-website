@@ -31,14 +31,13 @@ const getErrorMessage = (error: unknown) => {
     return errorMessage;
 };
 
-interface FormData {
+interface ContactFormData {
     name: string;
     email: string;
     message: string;
-}
-
-export const sendEmail = async (formData: FormData) => {
-
+  }
+  
+  export const sendEmail = async (formData: ContactFormData) => {
     const { name, email, message } = formData;
 
     if (!validateString(name, 1000)) {
@@ -58,14 +57,16 @@ export const sendEmail = async (formData: FormData) => {
         data = await resend.emails.send({
             from: 'Kontaktanfrage von Portfolio Website <onboarding@resend.dev>',
             to: 'thithusiva@protonmail.com',
-            subject: `Kontaktanfrage von ${name} <${email}>,`,
-            reply_to: email,
-            react: React.createElement(ContactFormEmail, { name, email, message })
+            subject: `Kontaktanfrage von ${name as string} <${email as string}>,`,
+            reply_to: email as string,
+            react: React.createElement(ContactFormEmail, {
+                name: name as string,
+                email: email as string,
+                message: message as string
+            })
         });
-    } catch (error : unknown) {
-        return { error: getErrorMessage(error) };        
+    } catch (error: unknown) {
+        return { error: getErrorMessage(error), data: null };
     }
-    return {
-        data,
-      };
+    return { data };
 };
