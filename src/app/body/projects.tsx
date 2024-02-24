@@ -93,7 +93,7 @@ const Projects = () => {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 className="text-4xl font-bold mb-8 underline">
-                Meine Projekte
+                Projekte
             </motion.h2>
             <motion.div
                 variants={containerVariants}
