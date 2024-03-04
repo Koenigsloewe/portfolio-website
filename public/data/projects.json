@@ -11,7 +11,7 @@
       "projectName": "AlpineAura E-Commerce",
       "projectDescription": "AlpineAura ist ein E-Commerce-Shop für Outdoor-Produkte. Der Shop ist in Python mit Django und SQLite umgesetzt und nutzt die Stripe-API und Paypal für die Zahlungsabwicklung.",
       "projectImage": "/images/alpineaura.png",
-      "projectLink": ""
+      "projectLink": "https://github.com/Koenigsloewe/AlpineAura"
     },
     {
       "id": 3,
